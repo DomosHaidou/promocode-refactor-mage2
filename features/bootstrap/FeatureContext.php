@@ -41,6 +41,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     public function iTryToUseRedeemTheCouponCode()
     {
         $this->visitPath('/testingthatitworks');
+//        var_dump($this->getSession()->getPage()->getHtml());
     }
 
     /**

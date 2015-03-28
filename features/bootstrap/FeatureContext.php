@@ -40,8 +40,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function iTryToUseRedeemTheCouponCode()
     {
-        $this->visitPath('/testingthatitworks');
-//        var_dump($this->getSession()->getPage()->getHtml());
+        $this->visitPath('/accessories/eyewear/aviator-sunglasses.html');
+        $this->getSession()->getPage()->find('css', '.btn-cart')->click();
     }
 
     /**

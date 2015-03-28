@@ -4,4 +4,5 @@ default:
             base_url: 'http://demo-ce.dev/'
             sessions:
                 default:
-                    goutte: ~
+                  selenium2:
+                    wd_host: http://localhost:4444/wd/hub

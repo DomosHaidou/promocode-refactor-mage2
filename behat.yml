@@ -1,8 +1,7 @@
 default:
-    suites:
-        core_features:
-            paths:    [ %paths.base%/features/core ]
-            contexts: [ CoreDomainContext ]
-        ui_features:
-            paths:    [ %paths.base%/features/ui ]
-            contexts: [ UIContext ]
+  extensions:
+    Behat\MinkExtension:
+      base_url: "http://localhost:8000"
+      sessions:
+        first_session:
+          goutte: ~

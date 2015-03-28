@@ -8,7 +8,7 @@
               Then I should see the error message "Your coupon is not valid yet. It will be active on"
 
               Scenario: I have a coupon code that is no longer valid based on the current date
-              Given I have the valid coupon code "VOUCHERCODEDATE"
+              Given I have a valid coupon code "VOUCHERCODEDATE"
               When I try to redeem the coupon code
               Then I should see the error message "Your coupon is no longer valid. It expired on"
 

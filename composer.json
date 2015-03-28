@@ -3,12 +3,11 @@
         "bin-dir": "bin"
     },
     "require-dev": {
-        "behat/behat": "3.0.*@dev",
-        "phpspec/phpspec": "2.1.*@dev",
-        "phpunit/phpunit": "4.7.*@dev",
-        "behat/mink": "1.6.*",
-        "behat/mink-extension": "*",
-        "behat/mink-selenium2-driver": "*",
-        "behat/mink-goutte-driver": "*"
+      "behat/behat": "~3.0.13",
+      "phpspec/phpspec": "~2.1.0-RC2",
+      "phpunit/phpunit": "~4.3.1",
+      "behat/mink": "~1.6.0",
+      "behat/mink-extension": "~2.0.0",
+      "behat/mink-goutte-driver": "~1.1.0"
     }
 }

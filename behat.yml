@@ -1,7 +1,7 @@
 default:
-  extensions:
-    Behat\MinkExtension:
-      base_url: "http://demo-ce.dev/"
-      sessions:
-        first_session:
-          goutte: ~
+    extensions:
+        Behat\MinkExtension:
+            base_url: 'http://demo-ce.dev/'
+            sessions:
+                default:
+                    goutte: ~

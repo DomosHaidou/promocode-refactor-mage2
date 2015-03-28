@@ -6,17 +6,17 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
-use Behat\MinkExtension\Context\MinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
 
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends MinkContext implements SnippetAcceptingContext
+class FeatureContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
 
-  private $couponCode;
-  
-     /**
+    private $couponCode;
+
+    /**
      * Initializes context.
      *
      * Every scenario gets its own context instance.
@@ -32,7 +32,7 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
      */
     public function iHaveAValidCouponCode($couponCode)
     {
-      $this->couponCode = $couponCode;
+        $this->couponCode = $couponCode;
     }
 
     /**
@@ -40,21 +40,13 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
      */
     public function iTryToUseRedeemTheCouponCode()
     {
-      //var_export($this->getSession()->visit('http://demo-ce.dev/'));
+        $this->visitPath('/testingthatitworks');
     }
 
     /**
      * @Then I should see the error message :arg1
      */
     public function iShouldSeeTheErrorMessage($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given I have the valid coupon code :arg1
-     */
-    public function iHaveTheValidCouponCode($arg1)
     {
         throw new PendingException();
     }

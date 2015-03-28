@@ -40,8 +40,7 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
      */
     public function iTryToUseRedeemTheCouponCode()
     {
-      $page = $this->getSession()->visit('/cart/voucher/add/' . $this->couponCode);
-      var_dump($page);
+      //var_export($this->getSession()->visit('http://demo-ce.dev/'));
     }
 
     /**

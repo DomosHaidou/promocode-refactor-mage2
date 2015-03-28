@@ -36,28 +36,26 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     }
 
     /**
-     * @When I try to use redeem the coupon code
+     * @When I try to redeem the coupon code
      */
     public function iTryToUseRedeemTheCouponCode()
     {
         $this->visitPath('/accessories/eyewear/aviator-sunglasses.html');
         $this->getSession()->getPage()->find('css', '.btn-cart')->click();
+        // checkout page
+        $this->getSession()->getPage()->fillField('coupon_code', $this->couponCode);
+        // apply the voucher code
+        $this->getSession()->getPage()->find('xpath', '//*[@id="discount-coupon-form"]/div/div/div/div/button')->click();
     }
 
     /**
-     * @Then I should see the error message :arg1
+     * @Then I should see the error message :message
      */
-    public function iShouldSeeTheErrorMessage($arg1)
+    public function iShouldSeeTheErrorMessage($message)
     {
-        throw new PendingException();
-    }
+        $output = $this->getSession()->getPage()->find('css', '.error-msg')->getHtml();
 
-    /**
-     * @When I try to redeem the coupon code
-     */
-    public function iTryToRedeemTheCouponCode()
-    {
-        throw new PendingException();
+        expect(strip_tags($output))->toBe($message);
     }
 
     /**
@@ -66,5 +64,10 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     public function iAmLoggedInAsAReturnVisitorCustomer()
     {
         throw new PendingException();
+    }
+
+    private function generateHtmlPage($fileName, $html)
+    {
+        file_put_contents($fileName, $html);
     }
 }

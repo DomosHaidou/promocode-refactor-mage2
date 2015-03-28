@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "241ad78ef1141ece62ceabec676730f0",
+    "hash": "f276e58c2760dc8254088fa374d7b74e",
     "packages": [],
     "packages-dev": [
         {
@@ -466,6 +466,52 @@
             "time": "2014-05-15 22:08:22"
         },
         {
+            "name": "bossa/phpspec2-expect",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BossaConsulting/phpspec2-expect.git",
+                "reference": "f3a80b7fa743b8a1078a7e320bd3e8b8b6283780"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BossaConsulting/phpspec2-expect/zipball/f3a80b7fa743b8a1078a7e320bd3e8b8b6283780",
+                "reference": "f3a80b7fa743b8a1078a7e320bd3e8b8b6283780",
+                "shasum": ""
+            },
+            "require": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "expect.php"
+                ],
+                "psr-0": {
+                    "Bossa\\PhpSpec\\Expect\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcello Duarte",
+                    "homepage": "http://marcelloduarte.net/"
+                }
+            ],
+            "description": "Helper that decorates any SUS with a phpspec lazy object wrapper",
+            "keywords": [
+                "BDD",
+                "SpecBDD",
+                "TDD",
+                "spec",
+                "specification"
+            ],
+            "time": "2014-09-12 09:25:51"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.0.4",
             "source": {
@@ -837,12 +883,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/peridot-php/webdriver-manager.git",
-                "reference": "ccea511ad2f32d1f9881f9e8f11a8ec832a626c0"
+                "reference": "a7cd0dcabc7f851821573a27e755fa8b401cb0c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/peridot-php/webdriver-manager/zipball/ccea511ad2f32d1f9881f9e8f11a8ec832a626c0",
-                "reference": "ccea511ad2f32d1f9881f9e8f11a8ec832a626c0",
+                "url": "https://api.github.com/repos/peridot-php/webdriver-manager/zipball/a7cd0dcabc7f851821573a27e755fa8b401cb0c9",
+                "reference": "a7cd0dcabc7f851821573a27e755fa8b401cb0c9",
                 "shasum": ""
             },
             "require": {
@@ -880,7 +926,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2015-03-17 20:58:59"
+            "time": "2015-03-28 22:39:52"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

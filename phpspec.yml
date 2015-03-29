@@ -1,4 +1,3 @@
 suites:
     default:
-        src_path: app/code/
         namespae: Imagine\Promocode

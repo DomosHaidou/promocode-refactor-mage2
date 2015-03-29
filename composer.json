@@ -1,41 +1,41 @@
 {
-    "name": "amacgregor/promocode",
-    "description": "Improved error messages for coupon codes",
-    "type": "magento2-module",
-    "version": "1.0.0",
-    "license": [
-      "OSL-3.0",
-      "AFL-3.0"
-    ],
-    "config": {
-        "bin-dir": "bin"
-    },
-    "require-dev": {
-      "behat/behat": "~3.0.13",
-      "phpspec/phpspec": "~2.1.0-RC2",
-      "phpunit/phpunit": "~4.3.1",
-      "behat/mink": "~1.6.0",
-      "behat/mink-extension": "~2.0.0",
-      "behat/mink-goutte-driver": "~1.1.0",
-      "behat/mink-selenium2-driver": "*",
-      "peridot-php/webdriver-manager": "dev-master",
-      "bossa/phpspec2-expect": "1.*"
-    },
-    "require": {
-      "php": "~5.5.0|~5.6.0",
-      "magento/magento-composer-installer": "*"
-    },
-    "extra": {
-      "map": [
-        [
-          "*",
-          "Imagine/Promocode"
-        ]
+  "name": "amacgregor/promocode",
+  "description": "Improved error messages for coupon codes",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "config": {
+    "bin-dir": "bin"
+  },
+  "require-dev": {
+    "behat/behat": "~3.0.13",
+    "phpspec/phpspec": "~2.1.0-RC2",
+    "phpunit/phpunit": "~4.3.1",
+    "behat/mink": "~1.6.0",
+    "behat/mink-extension": "~2.0.0",
+    "behat/mink-goutte-driver": "~1.1.0",
+    "behat/mink-selenium2-driver": "*",
+    "peridot-php/webdriver-manager": "dev-master",
+    "bossa/phpspec2-expect": "1.*"
+  },
+  "require": {
+    "php": "~5.5.0|~5.6.0",
+    "magento/magento-composer-installer": "*"
+  },
+  "extra": {
+    "map": [
+      [
+        "src",
+        "Imagine/Promocode"
       ]
-    },
-    "autoload": {
-      "psr-0": {
-        "" : "app/code/Imagine/Promocode"
-      }
+    ]
+  },
+  "autoload": {
+    "psr-0": {
+      "Imagine\\Promocode": "src/"
     }
+  }
 }

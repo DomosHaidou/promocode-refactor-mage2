@@ -1,7 +1,8 @@
 default:
-  extensions:
-    Behat\MinkExtension:
-      base_url: "http://localhost:8000"
-      sessions:
-        first_session:
-          goutte: ~
+    extensions:
+        Behat\MinkExtension:
+            base_url: 'http://magento2.dev/'
+            sessions:
+                default:
+                  selenium2:
+                    wd_host: http://localhost:4444/wd/hub

@@ -4,7 +4,7 @@
 
               Scenario: I have a coupon code that is valid but has not yet become activated
               Given I have a valid coupon code "SOMENEWPROMOCODE"
-              When I try to use redeem the coupon code
+              When I try to redeem the coupon code
               Then I should see the error message "Your coupon is not valid yet. It will be active on"
 
               Scenario: I have a coupon code that is no longer valid based on the current date

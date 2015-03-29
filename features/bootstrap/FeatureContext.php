@@ -6,17 +6,17 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
-use Behat\MinkExtension\Context\MinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
 
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends MinkContext implements SnippetAcceptingContext
+class FeatureContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
 
-  private $couponCode;
-  
-     /**
+    private $couponCode;
+
+    /**
      * Initializes context.
      *
      * Every scenario gets its own context instance.
@@ -32,40 +32,32 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
      */
     public function iHaveAValidCouponCode($couponCode)
     {
-      $this->couponCode = $couponCode;
-    }
-
-    /**
-     * @When I try to use redeem the coupon code
-     */
-    public function iTryToUseRedeemTheCouponCode()
-    {
-      $page = $this->getSession()->visit('/cart/voucher/add/' . $this->couponCode);
-      var_dump($page);
-    }
-
-    /**
-     * @Then I should see the error message :arg1
-     */
-    public function iShouldSeeTheErrorMessage($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given I have the valid coupon code :arg1
-     */
-    public function iHaveTheValidCouponCode($arg1)
-    {
-        throw new PendingException();
+        $this->couponCode = $couponCode;
     }
 
     /**
      * @When I try to redeem the coupon code
      */
-    public function iTryToRedeemTheCouponCode()
+    public function iTryToUseRedeemTheCouponCode()
     {
-        throw new PendingException();
+        $this->visitPath('/joust-duffle-bag.html');
+        $this->getSession()->getPage()->find('css', '.tocart')->click();
+        // checkout page
+        $this->visitPath('/checkout/cart/');
+
+        $this->getSession()->getPage()->fillField('coupon_code', $this->couponCode);
+        // apply the voucher code
+        $this->getSession()->getPage()->find('xpath', '//*[@id="discount-coupon-form"]/div/div[2]/div/button')->click();
+    }
+
+    /**
+     * @Then I should see the error message :message
+     */
+    public function iShouldSeeTheErrorMessage($message)
+    {
+        $output = $this->getSession()->getPage()->find('css', '.message-error')->getHtml();
+
+        expect(strip_tags($output))->toBe($message);
     }
 
     /**
@@ -74,5 +66,10 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
     public function iAmLoggedInAsAReturnVisitorCustomer()
     {
         throw new PendingException();
+    }
+
+    private function generateHtmlPage($fileName, $html)
+    {
+        file_put_contents($fileName, $html);
     }
 }

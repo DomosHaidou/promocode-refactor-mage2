@@ -1,4 +1,12 @@
 {
+    "name": "amacgregor/promocode",
+    "description": "Improved error messages for coupon codes",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+    ],
     "config": {
         "bin-dir": "bin"
     },
@@ -12,5 +20,17 @@
       "behat/mink-selenium2-driver": "*",
       "peridot-php/webdriver-manager": "dev-master",
       "bossa/phpspec2-expect": "1.*"
+    },
+    "require": {
+      "php": "~5.5.0|~5.6.0",
+      "magento/magento-composer-installer": "*"
+    },
+    "extra": {
+      "map": [
+        [
+          "*",
+          "Imagine/Promocode"
+        ]
+      ]
     }
 }

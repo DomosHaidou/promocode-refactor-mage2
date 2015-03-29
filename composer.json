@@ -32,5 +32,10 @@
           "Imagine/Promocode"
         ]
       ]
+    },
+    "autoload": {
+      "psr-0": {
+        "" : "app/code/Imagine/Promocode"
+      }
     }
 }

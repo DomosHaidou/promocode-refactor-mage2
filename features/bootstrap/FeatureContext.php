@@ -40,12 +40,14 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function iTryToUseRedeemTheCouponCode()
     {
-        $this->visitPath('/accessories/eyewear/aviator-sunglasses.html');
-        $this->getSession()->getPage()->find('css', '.btn-cart')->click();
+        $this->visitPath('/joust-duffle-bag.html');
+        $this->getSession()->getPage()->find('css', '.tocart')->click();
         // checkout page
+        $this->visitPath('/checkout/cart/');
+
         $this->getSession()->getPage()->fillField('coupon_code', $this->couponCode);
         // apply the voucher code
-        $this->getSession()->getPage()->find('xpath', '//*[@id="discount-coupon-form"]/div/div/div/div/button')->click();
+        $this->getSession()->getPage()->find('xpath', '//*[@id="discount-coupon-form"]/div/div[2]/div/button')->click();
     }
 
     /**
@@ -53,7 +55,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function iShouldSeeTheErrorMessage($message)
     {
-        $output = $this->getSession()->getPage()->find('css', '.error-msg')->getHtml();
+        $output = $this->getSession()->getPage()->find('css', '.message-error')->getHtml();
 
         expect(strip_tags($output))->toBe($message);
     }

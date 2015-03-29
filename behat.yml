@@ -1,7 +1,7 @@
 default:
     extensions:
         Behat\MinkExtension:
-            base_url: 'http://demo-ce.dev/'
+            base_url: 'http://magento2.dev/'
             sessions:
                 default:
                   selenium2:

@@ -11,4 +11,9 @@ class ObserverSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Imagine\Promocode\Model\Observer');
     }
+
+    function it_should_validate_coupon_code(\Magento\SalesRule\Model\Coupon $coupon)
+    {
+        $coupon->getCode()->willReturn('ABC123');
+    }
 }

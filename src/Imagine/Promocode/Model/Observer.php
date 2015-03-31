@@ -9,3 +9,4 @@ class Observer
     throw new \InvalidArgumentException('Your coupon is not valid for');
   }
 }
+

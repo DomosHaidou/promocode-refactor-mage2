@@ -13,9 +13,14 @@ class ValidatorSpec extends ObjectBehavior
         $this->shouldHaveType('Imagine\Promocode\Model\Validator');
     }
 
-    function it_should_validate_a_coupon_code(\Magento\SalesRule\Model\Coupon $coupon,
-                                              \Magento\Sales\Model\Quote $quote)
-    {
+    function it_should_validate_a_coupon_code(
+        \Magento\SalesRule\Model\Coupon $coupon,
+        \Magento\Sales\Model\Quote $quote,
+        \Magento\SalesRule\Model\Rule $rule
+    ) {
+        $couponCode = $coupon->load($coupon)->willReturn($coupon);
+        $rule = $rule->load($coupon->getRuleId())->willReturn($rule);
+
         throw new PendingException(); 
         $coupon->getCode()->willReturn('ABC123');
     }

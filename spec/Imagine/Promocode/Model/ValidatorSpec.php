@@ -19,4 +19,22 @@ class ValidatorSpec extends ObjectBehavior
         throw new PendingException(); 
         $coupon->getCode()->willReturn('ABC123');
     }
+
+    function it_should_validate_a_coupon_to_date(\Magento\SalesRule\Model\Coupon $coupon,
+                                                   \Magento\SalesRule\Model\Rule $rule)
+    {
+        throw new PendingException();
+    }
+    
+    function it_should_validate_a_coupon_from_date(\Magento\SalesRule\Model\Coupon $coupon,
+                                                   \Magento\SalesRule\Model\Rule $rule)
+    {
+        throw new PendingException();
+    }
+
+    function it_should_validate_a_coupon_use_limit(\Magento\SalesRule\Model\Coupon $coupon
+                                                   \Magento\SalesRule\Model\Rule $rule)
+    {
+        throw new PendingException();
+    }
 }

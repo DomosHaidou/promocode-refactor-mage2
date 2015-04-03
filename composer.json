@@ -24,7 +24,8 @@
   },
   "require": {
     "php": "~5.5.0|~5.6.0",
-    "magento/magento-composer-installer": "*"
+    "magento/magento-composer-installer": "*",
+    "nesbot/carbon": "~1.18"
   },
   "extra": {
     "map": [
@@ -38,7 +39,8 @@
     "psr-0": {
       "Imagine\\Promocode": "src/",
       "Magento\\" : "vendor/magetest/magento/src/app/code/",
-      "Magento\\Framework\\": "vendor/magetest/magento/src/lib/internal/"
+      "Magento\\Framework\\": "vendor/magetest/magento/src/lib/internal/",
+      "Carbon\\": "vendor/nesbot/carbon/src/"
     }
   }
 }

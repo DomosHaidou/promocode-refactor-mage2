@@ -16,8 +16,8 @@ class DateValidatorSpec extends ObjectBehavior
         \Magento\SalesRule\Model\Rule $rule,
         \Magento\Sales\Model\Quote $quote
     ) {
-        $rule->getFromDate()->willReturn('2014-01-01');
-        $exception  = new \Exception('Your coupon is no longer valid it expired on');
+        $rule->getFromDate()->willReturn('2017-01-01');
+        $exception  = new \Exception('Your coupon is not valid yet. It will be active on 2017-01-01');
         $this->shouldThrow($exception)->duringValidate($rule, $quote);
     }
 }

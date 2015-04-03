@@ -17,4 +17,22 @@ class ValidatorFactorySpec extends ObjectBehavior
         $this->create('DateValidator')
             ->shouldReturnAnInstanceOf('Imagine\Promocode\Model\Validator\DateValidator');
     }
+
+    function it_should_create_a_general_validator_instance()
+    {
+        $this->create('GeneralValidator')
+            ->shouldReturnAnInstanceOf('Imagine\Promocode\Model\Validator\GeneralValidator');
+    }
+
+    function it_should_create_a_global_validator_instance()
+    {
+        $this->create('GlobalValidator')
+            ->shouldReturnAnInstanceOf('Imagine\Promocode\Model\Validator\GlobalValidator');
+    }
+
+    function it_should_create_a_customer_validator_instance()
+    {
+        $this->create('CustomerValidator')
+            ->shouldReturnAnInstanceOf('Imagine\Promocode\Model\Validator\CustomerValidator');
+    }
 }

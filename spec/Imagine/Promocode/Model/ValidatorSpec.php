@@ -13,33 +13,16 @@ class ValidatorSpec extends ObjectBehavior
         $this->shouldHaveType('Imagine\Promocode\Model\Validator');
     }
 
-    function it_should_validate_a_coupon_code(
+    function it_should_validate_and_throw_exception_for_global_usage_coupon_code(
         \Magento\SalesRule\Model\Coupon $coupon,
-        \Magento\Sales\Model\Quote $quote,
-        \Magento\SalesRule\Model\Rule $rule
+        \Imagine\Promocode\Model\Validator\GlobalValidator $globalValidator
     ) {
-        $couponCode = $coupon->load($coupon)->willReturn($coupon);
-        $rule = $rule->load($coupon->getRuleId())->willReturn($rule);
+        $coupon->getUsageLimit()->willReturn(1);
+        $coupon->getTimesUsed()->willReturn(1);
 
-        throw new PendingException(); 
-        $coupon->getCode()->willReturn('ABC123');
-    }
+        $exception = new \Exception('Your coupon was already used. It may only be used 1 time(s).');
 
-    function it_should_validate_a_coupon_to_date(\Magento\SalesRule\Model\Coupon $coupon,
-                                                   \Magento\SalesRule\Model\Rule $rule)
-    {
-        throw new PendingException();
-    }
-    
-    function it_should_validate_a_coupon_from_date(\Magento\SalesRule\Model\Coupon $coupon,
-                                                   \Magento\SalesRule\Model\Rule $rule)
-    {
-        throw new PendingException();
+        $this->shouldThrow($exception)->duringValidate($coupon);
     }
 
-    function it_should_validate_a_coupon_use_limit(\Magento\SalesRule\Model\Coupon $coupon,
-                                                   \Magento\SalesRule\Model\Rule $rule)
-    {
-        throw new PendingException();
-    }
 }

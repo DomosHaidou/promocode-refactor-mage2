@@ -4,12 +4,22 @@ namespace Imagine\Promocode\Model\Validator;
 
 class GlobalValidator
 {
-    public function validate(\Magento\SalesRule\Model\Coupon $coupon)
+    private $coupon;
+
+    public static function validate($coupon)
     {
-        if ($coupon->getUsageLimit() && $coupon->getTimesUsed() >= $coupon->getUsageLimit()) {
+        $globalValidator = new GlobalValidator();
+        $globalValidator->coupon = $coupon;
+
+        return $globalValidator;
+    }
+
+    public function getMessage()
+    {
+        if ($this->coupon->getUsageLimit() && $this->coupon->getTimesUsed() >= $this->coupon->getUsageLimit()) {
             $message = sprintf(
                 'Your coupon was already used. It may only be used %s time(s).',
-                $coupon->getUsageLimit()
+                $this->coupon->getUsageLimit()
             );
             throw new \Exception($message);
         }

@@ -10,14 +10,15 @@ class GlobalValidatorSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Imagine\Promocode\Model\Validator\GlobalValidator');
-        //$this->shouldImplement('Imagine\Promocode\Model\Validator\ValidatorInterface');
     }
 
     function it_should_throw_an_exception_for_coupons_used_more_than_specified_usage_limit(\Magento\SalesRule\Model\Coupon $coupon)
     {
+        $coupon->getUsageLimit()->willReturn(1);
+        $coupon->getTimesUsed()->willReturn(1);
 
-        $this->shouldThrow(new \Exception('Your coupon was already used. It may only be used 1 time(s).'))->during('validate', [
-            'startingParam' => $coupon->getUsageLimit()->willReturn(1),
-            'endingParam' => $coupon->getTimesUsed()->willReturn(1)]);
+        $exception = new \Exception('Your coupon was already used. It may only be used 1 time(s).');
+
+        $this->shouldThrow($exception)->duringValidate($coupon);
     }
 }

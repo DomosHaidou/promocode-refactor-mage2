@@ -22,8 +22,10 @@ class GlobalValidatorSpec extends ObjectBehavior
         $coupon->getUsageLimit()->willReturn(1);
         $coupon->getTimesUsed()->willReturn(1);
 
+        $params = array('coupon' => $coupon);
+
         $exception = new \Exception('Your coupon was already used. It may only be used 1 time(s).');
 
-        $this->shouldThrow($exception)->duringGetMessage();
+        $this->shouldThrow($exception)->duringWith($params);
     }
 }

@@ -10,7 +10,7 @@ class DateValidator
         return $dateValidator;
     }
 
-    public function getMessage($params) {
+    public function with($params) {
         // Check if the rule is active
         if(!isset($params['rule']))
         {

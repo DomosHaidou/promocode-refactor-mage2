@@ -24,7 +24,7 @@ class DateValidatorSpec extends ObjectBehavior
         $rule->getFromDate()->willReturn('2017-01-01');
         $params = array('rule' => $rule);
         $exception  = new \Exception('Your coupon is not valid yet. It will be active on 2017-01-01');
-        $this->shouldThrow($exception)->duringGetMessage($params);
+        $this->shouldThrow($exception)->duringWith($params);
     }
 
     function it_should_throw_a_expired_date_exception(
@@ -34,6 +34,6 @@ class DateValidatorSpec extends ObjectBehavior
         $rule->getFromDate()->willReturn('2014-01-01');
         $params = array('rule' => $rule);
         $exception  = new \Exception('Your coupon is no longer valid. It expired on 2014-01-01');
-        $this->shouldThrow($exception)->duringGetMessage($params);
+        $this->shouldThrow($exception)->duringWith($params);
     }
 }

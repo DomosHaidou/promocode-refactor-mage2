@@ -4,12 +4,20 @@ namespace Imagine\Promocode\Model\Validator;
 
 class DateValidator
 {
+    public static function validate()
+    {
+        $dateValidator = new DateValidator;
+        return $dateValidator;
+    }
 
-    public function validate(
-        \Magento\SalesRule\Model\Rule $rule,
-        \Magento\Sales\Model\Quote $quote
-    ) {
+    public function with($params) {
         // Check if the rule is active
+        if(!isset($params['rule']))
+        {
+            return;
+        }
+
+        $rule = $params['rule'];
         if ($rule->getFromDate()) {
             $fromDate = new \Carbon\Carbon($rule->getFromDate());
             if (\Carbon\Carbon::now()->lte($fromDate)) {
@@ -26,7 +34,5 @@ class DateValidator
                 throw new \Exception($message);
             }
         }
-
-        return true;
     }
 }

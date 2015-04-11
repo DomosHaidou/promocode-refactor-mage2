@@ -15,14 +15,15 @@ class ValidatorSpec extends ObjectBehavior
 
     function it_should_validate_and_throw_exception_for_global_usage_coupon_code(
         \Magento\SalesRule\Model\Coupon $coupon,
-        \Imagine\Promocode\Model\Validator\GlobalValidator $globalValidator
+        \StdClass $params
     ) {
-        $coupon->getUsageLimit()->willReturn(1);
-        $coupon->getTimesUsed()->willReturn(1);
+        $params->coupon->willReturn($coupon);
+        $params->coupon->getUsageLimit()->willReturn(1);
+        $params->coupon->getTimesUsed()->willReturn(1);
 
         $exception = new \Exception('Your coupon was already used. It may only be used 1 time(s).');
 
-        $this->shouldThrow($exception)->duringValidate($coupon);
+        $this->shouldThrow($exception)->duringValidate($params);
     }
 
 }

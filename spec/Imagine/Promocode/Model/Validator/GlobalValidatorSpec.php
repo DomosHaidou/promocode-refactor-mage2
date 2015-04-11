@@ -12,9 +12,9 @@ class GlobalValidatorSpec extends ObjectBehavior
         $this->shouldHaveType('Imagine\Promocode\Model\Validator\GlobalValidator');
     }
 
-    function let(\Magento\SalesRule\Model\Coupon $coupon)
+    function let()
     {
-        $this->beConstructedThrough('validate', [$coupon]);
+        $this->beConstructedThrough('validate', []);
     }
 
     function it_should_throw_an_exception_for_coupons_used_more_than_specified_usage_limit(\Magento\SalesRule\Model\Coupon $coupon)

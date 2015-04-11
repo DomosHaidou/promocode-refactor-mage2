@@ -6,10 +6,16 @@ use Imagine\Promocode\Model\Validator as Validator;
 
 class Observer
 {
-    public function execute()
+    public function execute($event)
     {
+        $params = new \stdClass();
+        $params->coupon = $event->getCoupon();
+        $params->rule = $event->getRule();
+        $params->quote = $event->getQuote();
+
+
         $validator = new Validator();
-        $validator->validate('COUPONCODE');
+        $validator->validate($params);
     }
 }
 

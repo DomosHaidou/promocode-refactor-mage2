@@ -4,8 +4,8 @@ namespace Imagine\Promocode\Model;
 
 class Validator
 {
-    public function validate($coupon = NULL, $rule = NULL)
+    public function validate($services)
     {
-        \Imagine\Promocode\Model\Validator\GlobalValidator::validate($coupon)->getMessage();
+        \Imagine\Promocode\Model\Validator\GlobalValidator::validate()->with($services);
     }
 }

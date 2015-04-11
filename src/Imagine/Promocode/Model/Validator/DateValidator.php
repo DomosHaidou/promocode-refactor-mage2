@@ -5,7 +5,13 @@ namespace Imagine\Promocode\Model\Validator;
 class DateValidator
 {
 
-    public function validate(
+    public static function validate()
+    {
+        $dateValidator = new DateValidator;
+        return $dateValidator;
+    }
+
+    public function getMessage(
         \Magento\SalesRule\Model\Rule $rule,
         \Magento\Sales\Model\Quote $quote
     ) {

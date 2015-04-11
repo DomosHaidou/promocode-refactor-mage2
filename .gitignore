@@ -1,4 +1,5 @@
 .idea/
+*.swp
 vendor/
 bin/
 screenshot*

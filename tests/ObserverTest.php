@@ -6,7 +6,11 @@ class ObserverTest extends PHPUnit_Framework_TestCase
 
   protected function setup()
   {
-    $this->observer = new \Imagine\Promocode\Model\Observer();
+      $ruleFactory = $this->getMockBuilder('\Magento\SalesRule\Model\RuleFactory')
+          ->disableOriginalConstructor()
+          ->getMock();
+ 
+      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory);
   }
 
     /**
@@ -18,19 +22,26 @@ class ObserverTest extends PHPUnit_Framework_TestCase
         $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
             ->disableOriginalConstructor()
             ->getMock();
-
-        $observer = $this->getMockBuilder('\Magento\Framework\Event\Observer')
-            ->getMock();
-
+        
         $quoteService = $this->getMockBuilder('\Magento\Sales\Model\Service\Quote')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $observer->method('getEvent')
-            ->willReturn($observer);
+        $quote->method('getCouponCode')
+            ->willReturn('testCode');
 
-        $observer->method('getQuote')
-            ->willReturn($quoteService);
+
+        $observer = $this->getMockBuilder('\Magento\Framework\Event\Observer')
+            ->setMethods(array('getEvent', 'getQuote'))
+            ->getMock();
+
+        $observer->expects($this->any())
+            ->method('getEvent')
+            ->will($this->returnSelf());
+
+        $observer->expects($this->any())
+            ->method('getQuote')
+            ->willReturn($quote);
 
 
         $this->observer->execute($observer);

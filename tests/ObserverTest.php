@@ -4,10 +4,12 @@ class ObserverTest extends PHPUnit_Framework_TestCase
 {
   private $observer;
   private $coupon;
+  private $rule;
 
   protected function setup()
   {
-      $ruleFactory = $this->getMockBuilder('\Magento\SalesRule\Model\RuleFactory')
+      $this->rule = $this->getMockBuilder('\Magento\SalesRule\Model\Rule')
+          ->setMethods(array('getFromDate'))
           ->disableOriginalConstructor()
           ->getMock();
 
@@ -30,10 +32,7 @@ class ObserverTest extends PHPUnit_Framework_TestCase
           ->with('testCode')
           ->will($this->returnSelf());
 
-      $this->coupon->method('getUsageLimit')->willReturn(1);
-      $this->coupon->method('getTimesUsed')->willReturn(2);
-
-      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote, $this->coupon);
+      $this->observer = new \Imagine\Promocode\Model\Observer($this->rule, $quote, $this->coupon);
   }
 
     /**
@@ -42,11 +41,44 @@ class ObserverTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateCoupon()
     {
+        $this->coupon->method('getUsageLimit')->willReturn(1);
+        $this->coupon->method('getTimesUsed')->willReturn(2);
+
         $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
             ->disableOriginalConstructor()
             ->getMock();
-        
-        $quoteService = $this->getMockBuilder('\Magento\Sales\Model\Service\Quote')
+
+        $quote->expects($this->any())
+            ->method('getCouponCode')
+            ->willReturn('testCode');
+
+        $observer = $this->getMockBuilder('\Magento\Framework\Event\Observer')
+            ->setMethods(array('getEvent', 'getQuote'))
+            ->getMock();
+
+        $observer->expects($this->any())
+            ->method('getEvent')
+            ->will($this->returnSelf());
+
+        $observer->expects($this->any())
+            ->method('getQuote')
+            ->willReturn($quote);
+
+        $this->coupon->method('loadByCode')
+            ->willReturn($this->coupon);
+
+        $this->observer->execute($observer);
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Your coupon is not valid yet. It will be active on 2017-01-01
+     */
+    public function testValidateDateCoupon()
+    {
+        $this->rule->method('getFromDate')->willReturn('2017-01-01');
+
+        $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -9,8 +9,12 @@ class ObserverTest extends PHPUnit_Framework_TestCase
       $ruleFactory = $this->getMockBuilder('\Magento\SalesRule\Model\RuleFactory')
           ->disableOriginalConstructor()
           ->getMock();
+
+      $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
+          ->disableOriginalConstructor()
+          ->getMock();
  
-      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory);
+      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote);
   }
 
     /**
@@ -42,7 +46,6 @@ class ObserverTest extends PHPUnit_Framework_TestCase
         $observer->expects($this->any())
             ->method('getQuote')
             ->willReturn($quote);
-
 
         $this->observer->execute($observer);
     }

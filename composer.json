@@ -37,10 +37,10 @@
   },
   "autoload": {
     "psr-0": {
-      "Imagine\\Promocode": "src/",
-      "Magento\\" : "vendor/magetest/magento/src/app/code/",
-      "Magento\\Framework\\": "vendor/magetest/magento/src/lib/internal/",
-      "Carbon\\": "vendor/nesbot/carbon/src/"
+        "Imagine\\Promocode": "src/",
+        "Magento\\" : "vendor/magetest/magento/src/app/code/",
+        "Magento\\Framework\\": "vendor/magetest/magento/src/lib/internal/",
+        "Carbon\\": "vendor/nesbot/carbon/src/"
     }
   }
 }

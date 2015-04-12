@@ -30,8 +30,8 @@
   "extra": {
     "map": [
       [
-        "src",
-        "Imagine/Promocode"
+        "src/Imagine/Promocode",
+        ""
       ]
     ]
   },

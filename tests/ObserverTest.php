@@ -15,16 +15,23 @@ class ObserverTest extends PHPUnit_Framework_TestCase
      */
     public function testValidateCoupon()
     {
-        $quote = $this->prophesize('\Magento\Sales\Model\Quote');
-        $quote->reveal();
+        $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $observer = $this->prophesize('\Magento\Framework\Event\Observer');
+        $observer = $this->getMockBuilder('\Magento\Framework\Event\Observer')
+            ->getMock();
 
-        $quoteService = $this->prophesize('\Magento\Sales\Model\Service\Quote');
-        $quoteService->reveal();
-        
-        $observer->getEvent()->willReturn($quoteService);
-        $observer->getEvent()->getQuote()->willReturn($quote);
+        $quoteService = $this->getMockBuilder('\Magento\Sales\Model\Service\Quote')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $observer->method('getEvent')
+            ->willReturn($observer);
+
+        $observer->method('getQuote')
+            ->willReturn($quoteService);
+
 
         $this->observer->execute($observer);
     }

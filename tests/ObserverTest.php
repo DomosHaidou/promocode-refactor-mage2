@@ -13,8 +13,15 @@ class ObserverTest extends PHPUnit_Framework_TestCase
       $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
           ->disableOriginalConstructor()
           ->getMock();
- 
-      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote);
+
+      $coupon = $this->getMockBuilder('\Magento\SalesRule\Model\Coupon')
+          ->disableOriginalConstructor()
+          ->getMock();
+
+      $coupon->method('getUsageLimit')
+          ->willReturn(1);
+
+      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote, $coupon);
   }
 
     /**

@@ -9,14 +9,16 @@ class Observer
 {
     protected $ruleFactory;
     protected $quote;
-
+    protected $coupon;
 
     public function __construct(
         \Magento\SalesRule\Model\RuleFactory $ruleFactory,
-        \Magento\Sales\Model\Quote $quote
+        \Magento\Sales\Model\Quote $quote,
+        \Magento\SalesRule\Model\Coupon $coupon
     ) {
         $this->ruleFactory = $ruleFactory;
         $this->quote = $quote;
+        $this->coupon = $coupon;
     }
     /**
      *
@@ -29,7 +31,7 @@ class Observer
         // Check if the rule exists and load it
         // Prepare params array
         $quote      = $observer->getEvent()->getQuote();
-        $couponCode = $this->quote;
+        $couponCode = $this->coupon->loadByCode($this->quote->getCouponCode());
         $params = ['coupon' => $couponCode, 'rule' => null, 'quote'=> $quote];
         //$rule   = 
         // Call the Validator

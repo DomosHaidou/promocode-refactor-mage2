@@ -16,7 +16,7 @@ class Observer
         \Magento\Sales\Model\Quote $quote,
         \Magento\SalesRule\Model\Coupon $coupon
     ) {
-        $this->ruleFactory = $rule;
+        $this->rule = $rule;
         $this->quote = $quote;
         $this->coupon = $coupon;
     }

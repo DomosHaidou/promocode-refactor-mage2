@@ -14,7 +14,6 @@ class GlobalValidator
     public function with($params)
     {
         $coupon = $params['coupon'];
-var_dump($coupon->getUsageLimit());die();
         if ($coupon->getUsageLimit() && $coupon->getTimesUsed() >= $coupon->getUsageLimit()) {
             $message = sprintf(
                 'Your coupon was already used. It may only be used %s time(s).',

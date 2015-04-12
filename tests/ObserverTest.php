@@ -12,19 +12,33 @@ class ObserverTest extends PHPUnit_Framework_TestCase
           ->getMock();
 
       $quote = $this->getMockBuilder('\Magento\Sales\Model\Quote')
+          ->setMethods(array('getCouponCode'))
+          ->disableOriginalConstructor()
+          ->getMock();
+      
+      $quote->expects($this->any())
+            ->method('getCouponCode')
+            ->willReturn('testCode');
+
+      $this->coupon = $this->getMockBuilder('\Magento\SalesRule\Model\Coupon')
+          ->setMethods(array('getUsageLimit', 'loadByCode','getTimesUsed'))
           ->disableOriginalConstructor()
           ->getMock();
 
-      $this->coupon = $this->getMockBuilder('\Magento\SalesRule\Model\Coupon')
-          ->disableOriginalConstructor()
-          ->getMock();
+      $this->coupon->expects($this->any())
+          ->method('loadByCode')
+          ->with('testCode')
+          ->will($this->returnSelf());
+
+      $this->coupon->method('getUsageLimit')->willReturn(1);
+      $this->coupon->method('getTimesUsed')->willReturn(2);
 
       $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote, $this->coupon);
   }
 
     /**
      * @expectedException Exception
-     * @expectedExceptionMessage Your coupon is not valid for 
+     * @expectedExceptionMessage Your coupon was already used. It may only be used 1 time(s).
      */
     public function testValidateCoupon()
     {
@@ -36,9 +50,9 @@ class ObserverTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $quote->method('getCouponCode')
+        $quote->expects($this->any())
+            ->method('getCouponCode')
             ->willReturn('testCode');
-
 
         $observer = $this->getMockBuilder('\Magento\Framework\Event\Observer')
             ->setMethods(array('getEvent', 'getQuote'))

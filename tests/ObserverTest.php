@@ -3,6 +3,7 @@
 class ObserverTest extends PHPUnit_Framework_TestCase
 {
   private $observer;
+  private $coupon;
 
   protected function setup()
   {
@@ -14,18 +15,15 @@ class ObserverTest extends PHPUnit_Framework_TestCase
           ->disableOriginalConstructor()
           ->getMock();
 
-      $coupon = $this->getMockBuilder('\Magento\SalesRule\Model\Coupon')
+      $this->coupon = $this->getMockBuilder('\Magento\SalesRule\Model\Coupon')
           ->disableOriginalConstructor()
           ->getMock();
 
-      $coupon->method('getUsageLimit')
-          ->willReturn(1);
-
-      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote, $coupon);
+      $this->observer = new \Imagine\Promocode\Model\Observer($ruleFactory, $quote, $this->coupon);
   }
 
     /**
-     * @expectedException InvalidArgumentException 
+     * @expectedException Exception
      * @expectedExceptionMessage Your coupon is not valid for 
      */
     public function testValidateCoupon()
@@ -53,6 +51,9 @@ class ObserverTest extends PHPUnit_Framework_TestCase
         $observer->expects($this->any())
             ->method('getQuote')
             ->willReturn($quote);
+
+        $this->coupon->method('loadByCode')
+            ->willReturn($this->coupon);
 
         $this->observer->execute($observer);
     }

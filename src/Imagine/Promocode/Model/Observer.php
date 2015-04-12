@@ -32,6 +32,7 @@ class Observer
         // Prepare params array
         $quote      = $observer->getEvent()->getQuote();
         $couponCode = $this->coupon->loadByCode($this->quote->getCouponCode());
+
         $params = ['coupon' => $couponCode, 'rule' => null, 'quote'=> $quote];
         //$rule   = 
         // Call the Validator

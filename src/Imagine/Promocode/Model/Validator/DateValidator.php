@@ -18,6 +18,7 @@ class DateValidator
         }
 
         $rule = $params['rule'];
+
         if ($rule->getFromDate()) {
             $fromDate = new \Carbon\Carbon($rule->getFromDate());
             if (\Carbon\Carbon::now()->lte($fromDate)) {

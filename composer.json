@@ -13,7 +13,7 @@
   "require-dev": {
     "behat/behat": "~3.0.13",
     "phpspec/phpspec": "~2.1.0-RC2",
-    "phpunit/phpunit": "~4.3.1",
+    "phpunit/phpunit": "~4.5",
     "behat/mink": "~1.6.0",
     "behat/mink-extension": "~2.0.0",
     "behat/mink-goutte-driver": "~1.1.0",
